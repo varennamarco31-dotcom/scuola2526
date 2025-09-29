@@ -22,17 +22,12 @@ public class lab32909 {
         System.out.println("inserisci la temperatura da trasformare");
         double temp = scanner.nextDouble();
 
-        switch (scelta) {
-            case true:
+        if (scelta){
                 System.out.println("temperatura traformata in fahr: " + celsius(temp));
-                break;
-            case false: 
+        } else {
                 System.out.println("temperatura traformata in celsius: " + fahr(temp));
-                break;
-            default:
-                System.out.println("valore indefiniuto");
-                break;
         }
 
+        scanner.close();
     }
 }
