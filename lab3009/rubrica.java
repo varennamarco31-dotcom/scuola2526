@@ -6,7 +6,7 @@ public class rubrica {
     
     public static void menu(){
         System.out.println("1. inserisci gromech");
-        System.out.println("2. ricerca tramite nome");
+        System.out.println("2. cerca in rubrica");
         System.out.println("3. cancella tramite nome");
         System.out.println("4. stampa tutti i numeri");
         System.out.println("5. n posti vuoit");
@@ -31,14 +31,14 @@ public class rubrica {
     public static void cercanum(String num[], String nom[], String nome){
         for (int i = 0; i < nom.length; i++) {
             if(nom[i] != null && nom[i].equals(nome)){
-                System.out.println("contatto : "+ nome + num[i]);
+                System.out.println("contatto : "+ nome  + " " + num[i]);
             }
         }
     }
     public static void cercanom(String num[], String nom[], String numero){
         for (int i = 0; i < num.length; i++) {
             if(num[i] != null && num[i].equals(numero)){
-                System.out.println("contatto : "+ nom[i] + numero);
+                System.out.println("contatto : "+ nom[i] + " " + numero);
             }
         }
     }
@@ -53,13 +53,14 @@ public class rubrica {
     }
 
     public static void stampa(String num[], String nom[]) {
+        System.out.println();
         for (int i = 0; i < nom.length; i++) {
             if(nom[i] != null && !nom[i].equals("")){
-                System.out.print(nom[i]);
+                System.out.print(nom[i] + " ");
                 System.out.println(num[i]);
-                System.out.println();
             }
         }
+        System.out.println();
     }
 
     public static int conta(String num[], String nom[]){
