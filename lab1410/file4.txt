@@ -1,0 +1,5 @@
+blufbeci 11 6 
+Omeci 12 7 
+Imeci 14 8 
+Emeci 15 9 
+Ameci 17 3 
