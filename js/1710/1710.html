@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<title>1710</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  #messaggio {
+    color: red;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Gestione Paragrafi</h1>
+<button id="aggiungiBtn">Aggiungi</button>
+<button id="pulisciBtn">Pulisci</button>
+<div id="container"></div>
+<div id="messaggio"></div>
+
+<script>
+  const aggiungiBtn = document.getElementById('aggiungiBtn');
+  const pulisciBtn = document.getElementById('pulisciBtn');
+  const container = document.getElementById('container');
+  const messaggio = document.getElementById('messaggio');
+
+  // Variabile per Parte 2 (limite massimo paragrafi)
+  const maxParagrafi = 10;
+  let countParagrafi = 0;
+
+  // Funzione per aggiungere un nuovo paragrafo
+  function aggiungiParagrafo() {
+    // Parte 2: verifica limite
+    if (countParagrafi >= maxParagrafi) {
+      messaggio.textContent = "Numero massimo di paragrafi raggiunto";
+      return;
+    }
+    // Se ci sono paragrafi più vecchi, rimuovi il messaggio di limite
+    if (messaggio.textContent === "Numero massimo di paragrafi raggiunto") {
+      messaggio.textContent = "";
+    }
+    
+    const p = document.createElement('p');
+    p.textContent = "Questo è un nuovo paragrafo.";
+    container.appendChild(p);
+    countParagrafi++;
+  }
+
+  // Funzione per pulire tutti i paragrafi
+  function pulisci() {
+    container.innerHTML = "";
+    countParagrafi = 0;
+    messaggio.textContent = "";
+  }
+
+  // Event listeners
+  aggiungiBtn.addEventListener('click', aggiungiParagrafo);
+  pulisciBtn.addEventListener('click', pulisci);
+</script>
+
+</body>
+</html>
