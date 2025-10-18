@@ -1,4 +1,4 @@
-package lab1410;
+ package lab1410;
 
 import java.io.*;
 import java.util.Scanner;

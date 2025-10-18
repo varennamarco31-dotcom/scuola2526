@@ -2,15 +2,15 @@ import java.util.Scanner;
 import java.io.*;
 
 public class esverifica1810 {
-    
+
     static String[] titolo = new String[30];
     static String[] autore = new String[30];
     static int[] anno = new int[30];
-    static int n = 0; 
+    static int n = 0;
 
     public static void aggiungi(Scanner scanner){
-        
-        if(n > 30){
+        scanner.nextLine();
+        if(n >= 30){
             System.out.println("libreria piena");
         }else{
             System.out.println("inserisci titolo ");
@@ -21,25 +21,24 @@ public class esverifica1810 {
             anno[n] = scanner.nextInt();
             n++;
         }
-        
     }
 
     public static void visualizza(){
         if(n == 0){
             System.out.println("nessun libro in libreruia");
         }else{
-            for (int i = 0; i < n - 1; i++) { 
+            for (int i = 0; i < n - 1; i++) {
                 for (int j = 0; j < n - 1 - i; j++) {
-                    if(titolo[i].compareToIgnoreCase(titolo[j])>0){
-                        String tempt = titolo[i];
-                        String tempa = autore[i];
-                        int tempy = anno[i];
-                        titolo[i] = titolo[j];
-                        titolo[j] = tempt;
-                        autore[i] = titolo[j];
-                        autore[j] = tempa;
-                        anno[i] = anno[j];
-                        anno[j] = tempy;
+                    if(titolo[j].compareToIgnoreCase(titolo[j+1]) > 0){
+                        String tempt = titolo[j];
+                        String tempa = autore[j];
+                        int tempy = anno[j];
+                        titolo[j] = titolo[j+1];
+                        titolo[j+1] = tempt;
+                        autore[j] = autore[j+1];
+                        autore[j+1] = tempa;
+                        anno[j] = anno[j+1];
+                        anno[j+1] = tempy;
                     }
                 }
             }
@@ -47,10 +46,10 @@ public class esverifica1810 {
                 System.out.println(i + ": " + titolo[i] + " " + autore[i] + " " + anno[i]);
             }
         }
-        
     }
 
     public static void cerca(Scanner scanner){
+        scanner.nextLine();
         int trovati = 0;
         if (n == 0){
             System.out.println("nessun libro nella libreria");
@@ -70,6 +69,7 @@ public class esverifica1810 {
     }
 
     public static void cancella(Scanner scanner){
+        scanner.nextLine();
         boolean t = false;
         if (n == 0){
             System.out.println("nessun libro in libreria");
@@ -85,9 +85,10 @@ public class esverifica1810 {
                     }
                     n--;
                     t = true;
+                    System.out.println("libro cancellato");
                     break;
                 }
-            } 
+            }
         }
         if(!t){
             System.out.println("libro non trovato");
@@ -99,6 +100,7 @@ public class esverifica1810 {
             for (int i = 0; i < n; i++) {
                 writer.println(titolo[i] + "-" + autore[i] + "-" + anno[i]);
             }
+            System.out.println("scrittura completata");
         } catch (IOException e) {
             System.err.println("errore in scrittura");
         }
@@ -110,18 +112,21 @@ public class esverifica1810 {
             while (fscanner.hasNextLine() && n < 30 ) {
                 String a = fscanner.nextLine();
                 String a2[] = a.split("-");
-                titolo[n] = a2[0];
-                autore[n] = a2[1];
-                anno[n] = Integer.parseInt(a2[2]);
-                n++;
-            } 
+                if (a2.length == 3){
+                    titolo[n] = a2[0];
+                    autore[n] = a2[1];
+                    anno[n] = Integer.parseInt(a2[2]);
+                    n++;
+                }
+            }
+            System.out.println("lettura completata");
         } catch (IOException e) {
             System.out.println("errore in lettura");
         }
     }
 
     public static void main(String[] args) {
-        
+
         Scanner scanner = new Scanner(System.in);
         int scelta;
 
@@ -134,7 +139,7 @@ public class esverifica1810 {
             System.out.println("6. leggi file");
             System.out.println("0. esci");
             scelta = scanner.nextInt();
-            
+
             switch (scelta) {
                 case 1:
                     aggiungi(scanner);
@@ -157,10 +162,12 @@ public class esverifica1810 {
                 case 0:
                     break;
                 default:
-                System.out.println("immetti una scelta valida");
+                    System.out.println("immetti una scelta valida");
                     break;
             }
 
         } while (scelta != 0);
+
+        scanner.close();
     }
 }
