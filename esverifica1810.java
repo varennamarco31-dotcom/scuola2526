@@ -78,7 +78,7 @@ public class esverifica1810 {
             String a = scanner.nextLine();
             for (int i = 0; i < n; i++) {
                 if (titolo[i].equalsIgnoreCase(a)){
-                    for (int j = i; j < n-1; j++) {
+                    for (int j = i; j < n -1; j++) {
                         titolo[j] = titolo[j+1];
                         autore[j] = autore[j+1];
                         anno[j] = anno[j+1];
