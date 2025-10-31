@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Mostri</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a001a, #2c003e, #000);
+            color: #ffb347;
+            font-family: "Creepster", "Segoe UI", Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        /* Import font Creepster da Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+        h1{
+            color: #ff7518;
+            text-shadow: 0 0 15px #ff5e00, 0 0 30px #ff3c00;
+            margin-bottom: 40px;
+            font-size: 3em;
+            letter-spacing: 2px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(30, 0, 40, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(255, 94, 0, 0.5);
+        }
+
+        th, td {
+            border-bottom: 1px solid rgba(255, 140, 0, 0.3);
+            padding: 12px 16px;
+        }
+
+        th {
+            background-color: rgba(255, 94, 0, 0.2);
+            color: #ffcc66;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #ff6600;
+        }
+
+        button{
+            margin: 20px;
+            height: 7vw;
+            background-color: rgba(30, 0, 40, 0.8);
+            color: #ffcc66;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #ff6600;
+            border-radius: 10px;  
+            box-shadow: 0 0 14px rgba(255, 94, 0, 0.5);
+        }
+
+        button:hover{
+            background-color: rgba(255, 94, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 94, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        td {
+            color: #ffe0b3;
+            text-shadow: 0 0 5px #ff7518;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>I MOSTRI </h1>
+    <div id="div"></div>
+    <button onclick="mostramodulo()">Aggiungi</button>
+    <div id="modulo"></div>
+
+    <script>
+        let mostri = [
+            {nome: "Talots", film: "Godzilla", anno: 1954},
+            {nome: "John Pork", film: "Alien", anno: 1979},
+            {nome: "Pomeci", film: "Predator", anno: 1987},
+            {nome: "Tim Cheese", film: "King Kong", anno: 1933},
+            {nome: "Frankenstein", film: "Frankenstein", anno: 1931},
+            {nome: "Dracula", film: "Dracula", anno: 1931},
+            {nome: "Pennywise", film: "It", anno: 1990},
+            {nome: "The Thing", film: "La Cosa", anno: 1982},
+            {nome: "Gremlin", film: "Gremlins", anno: 1984},
+            {nome: "The Blob", film: "The Blob", anno: 1958}
+        ];
+
+        function stampamostri() {
+            let stringaHTML = "<table>";
+            stringaHTML += "<tr><th>Nome</th><th>Film</th><th>Anno</th></tr>";
+
+            for (let i = 0; i < mostri.length; i++) {
+                stringaHTML += "<tr>" +
+                    "<td>" + mostri[i].nome + "</td>" +
+                    "<td>" + mostri[i].film + "</td>" +
+                    "<td>" + mostri[i].anno + "</td>" +
+                "</tr>";
+            }
+
+            stringaHTML += "</table>";
+            console.log(stringaHTML);
+            document.getElementById("div").innerHTML = stringaHTML;
+        }
+
+        function mostramodulo(){
+            let html = `
+                <input type="text" id="nome" placeholder="Nome del mostro">
+                <input type="text" id="film" placeholder="Film">
+                <input type="number" id="anno" placeholder="Anno">
+                <button onclick="aggiungimostro()">Conferma</button>
+            `;
+            document.getElementById("modulo").innerHTML = html;
+        }
+
+        function aggiungimostro(){
+            let nome = document.getElementById("nome").value;
+            let film = document.getElementById("film").value;
+            let anno = parseInt(document.getElementById("anno").value);
+
+            mostri.push({ nome: nome, film: film, anno: anno });
+            document.getElementById("modulo").innerHTML = "";
+            stampamostri();
+        }
+        
+        stampamostri();
+    </script>
+</body>
+</html>
