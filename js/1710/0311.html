@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="num">
+    <button onclick="sorteggia()" id="bottone1">sorteggia</button>
+    <div id="nomi"></div>
+    <button onclick="sort2()" id="bottone2"> again</button>
+    
+    <script>
+        document.getElementById("bottone2").style.display="none"; 
+        let cognomi = [
+        "Alfieri",
+        "Ben Ameur",
+        "Bonanno",
+        "Borgonovo",
+        "Casiraghi",
+        "Celli",
+        "Ciccarese",
+        "Civita",
+        "Colombo",
+        "Costamagna",
+        "Ferlin",
+        "Foglieni",
+        "Fusillo",
+        "Gilardi",
+        "Meroni",
+        "Nava",
+        "Riva",
+        "Sanguedolce",
+        "Santarlasci",
+        "Trombini",
+        "Turiello",
+        "Varenna"
+        ];
+
+        let s = false; 
+
+        function sorteggia(){
+            if (s == false){
+            let num = document.getElementById("num").value;
+            document.getElementById("num").style.display = "none";
+            document.getElementById("bottone1").style.display = "none";
+            document.getElementById("nomi").innerHTML = "";
+
+            for (let i = cognomi.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [cognomi[i], cognomi[j]] = [cognomi[j], cognomi[i]];
+            }
+            
+            for(let i = 0; i < num; i++){
+                document.getElementById("nomi").innerHTML += "<p> " + cognomi[i] +"</p>";
+            }
+
+            document.getElementById("bottone2").style.display = "block"
+            }else{
+                s = false;
+                document.getElementById("num").style.display = "inline-block";
+                document.getElementById("bottone1").style.display = "inline-block";
+                document.getElementById("nomi").innerHTML = "";
+            }
+        }
+        
+    
+    function sort2(){
+           s = true; 
+        }
+    </script>
+</body>
+</html>
