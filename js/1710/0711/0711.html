@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galleria Serie TV</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #222;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .divs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    #sx, #dx {
+      width: 50px;
+      height: 50px;
+      background-color: #444;
+      color: white;
+      font-size: 30px;
+      line-height: 50px;
+      cursor: pointer;
+      user-select: none;
+      margin: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #out {
+      text-align: center;
+    }
+
+    img {
+      width: 150px;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="divs">
+    <div id="sx" onclick="cambia(false)">⟨</div>
+    <div id="out"></div>
+    <div id="dx" onclick="cambia(true)">⟩</div>
+  </div>
+
+  <script>
+    let elenco = [
+      { titolo: "Breaking Bad", copertina: "img/bb.webp" },
+      { titolo: "Stranger Things", copertina: "img/st.webp" },
+      { titolo: "Game of Thrones", copertina: "img/got.webp" },
+      { titolo: "The Witcher", copertina: "img/tw.webp" },
+      { titolo: "The Last of Us", copertina: "img/tlou.webp" }
+    ];
+
+    let num = 0;
+    let d = document.getElementById("out");
+
+    function mostra() {
+      d.innerHTML = `
+        <img src="${elenco[num].copertina}" alt="${elenco[num].titolo}">
+        <h2>${elenco[num].titolo}</h2>
+      `;
+    }
+
+    function cambia(cambio) {
+        if (cambio) {
+        num++;
+        } else if (num >= elenco.length){ 
+          num = 0;
+        } else {
+          num--;
+        }
+        if (num < 0) {
+          num = elenco.length - 1;
+        }
+        if (num > elenco.length -1){
+          num = 0;
+        }
+      mostra();
+    }
+
+    mostra();
+
+    
+
+  </script>
+
+</body>
+</html>
